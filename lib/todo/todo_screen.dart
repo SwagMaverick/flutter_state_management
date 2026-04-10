@@ -51,7 +51,7 @@ class TodoScreen extends StatelessWidget {
                   );
                 }
                 return ListView.builder(
-                  itemCount: todo.items.length,
+                  itemCount: model.items.length,
                   itemBuilder: (context, index) {
                     final item = model.items[index];
                     return ListTile(
