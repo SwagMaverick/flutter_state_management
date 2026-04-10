@@ -8,6 +8,7 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
+    final todo = context.read<TodoModel>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('ToDo List')),
@@ -25,7 +26,7 @@ class TodoScreen extends StatelessWidget {
                       border: OutlineInputBorder(),
                     ),
                     onSubmitted: (value) {
-                      context.read<TodoModel>().addItem(value);
+                      todo.addItem(value);
                       controller.clear();
                     },
                   ),
@@ -33,7 +34,7 @@ class TodoScreen extends StatelessWidget {
                 const SizedBox(width: 8),
                 IconButton.filled(
                   onPressed: () {
-                    context.read<TodoModel>().addItem(controller.text);
+                    todo.addItem(controller.text);
                     controller.clear();
                   },
                   icon: const Icon(Icons.add),
