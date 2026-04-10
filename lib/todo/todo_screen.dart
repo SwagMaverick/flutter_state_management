@@ -44,8 +44,8 @@ class TodoScreen extends StatelessWidget {
           ),
           Expanded(
             child: Consumer<TodoModel>(
-              builder: (context, todo, child) {
-                if (todo.items.isEmpty) {
+              builder: (context, model, _) {
+                if (model.items.isEmpty) {
                   return const Center(
                     child: Text('No tasks yet', style: TextStyle(color: Colors.grey)),
                   );
@@ -53,11 +53,11 @@ class TodoScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: todo.items.length,
                   itemBuilder: (context, index) {
-                    final item = todo.items[index];
+                    final item = model.items[index];
                     return ListTile(
                       leading: Checkbox(
                         value: item.isDone,
-                        onChanged: (_) => todo.toggleItem(item.id),
+                        onChanged: (_) => model.toggleItem(item.id),
                       ),
                       title: Text(
                         item.title,
@@ -68,7 +68,7 @@ class TodoScreen extends StatelessWidget {
                       ),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
-                        onPressed: () => todo.removeItem(item.id),
+                        onPressed: () => model.removeItem(item.id),
                       ),
                     );
                   },
